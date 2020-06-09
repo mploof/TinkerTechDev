@@ -1,0 +1,60 @@
+html, body {
+  box-sizing: border-box;
+  display: block;
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+  margin: auto;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+.TTLogo {
+  margin: 10px;
+  height: 50px;
+}
+
+.Toolbar-Buttons {
+  display: flex;
+}
+
+
+/* Smartphones (landscape) ----------- */
+@media only screen
+and (min-width : 412px) {
+  .SiteNav {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen
+and (max-width : 411px) {
+  .SiteNav {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .Toolbar-Buttons {
+    visibility: collapse;
+    height: 0px;
+  }
+
+  .TTLogo {
+    height: 75px;
+  }
+}
+
+/* Desktops and laptops ----------- */
+@media only screen
+and (min-width : 900px) {
+  .SiteNav {
+    display: flex;
+    justify-content: space-between;
+  }
+}
