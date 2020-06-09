@@ -20,6 +20,7 @@ function SiteContextProvider({children}) {
 
   function setWindowOpen(contextName, visible) {
     setOpenWindows(prev => ({...prev, [contextName]: visible}))
+    setActiveWindow(contextName)
   }
 
   function setActiveWindow(contextName) {
@@ -34,11 +35,19 @@ function SiteContextProvider({children}) {
     )
   }
 
+  function setMenu(menuName) {
+    console.log(menuName)
+    setCurMenu(menuName)
+  }
+
 
   useEffect(() => {
     console.log(openWindows)
   }, [openWindows])
 
+  useEffect(() => {
+    console.log(curMenu)
+  }, [curMenu])
 
 
   return(
@@ -47,7 +56,8 @@ function SiteContextProvider({children}) {
         registerWindow, isOpen,
         openWindows, setWindowOpen,
         setActiveWindow, getZIndex,
-        windowCount
+        windowCount,
+        setMenu
       }}>
       {children}
     </SiteContext.Provider>

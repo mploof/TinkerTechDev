@@ -1,13 +1,16 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect} from 'react';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import { reset, themes, List, ListItem, Divider, Window, Button, Toolbar, WindowHeader, WindowContent,
-          AppBar, TextField, LogoIcon, Cutout} from 'react95';
-import Menu from './components/Menu'
+          AppBar, TextField, LogoIcon, Cutout, Anchor} from 'react95';
+
 import { SiteContext } from './components/SiteContext'
 import DraggableWindow from './components/DraggableWindow'
-import TabbedWindow from './components/TabbedWindow'
+import WhatWeDo from './components/WhatWeDo'
+import TaskBar from './components/TaskBar'
+import About from './components/About'
+import Icon from './components/Icon'
 
-import { TTLogo } from './assets'
+import { TTLogo, DoubleArrow, Phone, FolderYellow, FolderBlue, Computer, NyanCat} from './assets'
 
 import './App.css'
 
@@ -19,7 +22,16 @@ const ResetStyles = createGlobalStyle`
 
 function App() {
 
-  const { setWindowOpen } = useContext(SiteContext)
+  const { setWindowOpen, setMenu } = useContext(SiteContext)
+
+  let skipClear = false;
+
+  function clearMenu() {
+    if(skipClear)
+      skipClear = false
+    else
+      setMenu(null)
+  }
 
   return (
     <>
@@ -27,53 +39,36 @@ function App() {
     <div className="App" style={{overflow: 'hidden'}}>
       <ThemeProvider theme={themes.default}>
 
+      <TaskBar />
 
         <div
         style={{
-          padding: '5rem',
           background: 'teal',
           height: '100vh',
           width: '100vw',
+          marginTop: '50px',
           position: 'absolute',
-          zIndex: 10000
+          overflow: 'hidden',
+          zIndex: 10000,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center'
         }}
+        onClick={clearMenu}
         >
+          <div className='IconGrid'>
+            <Icon src={Computer} text={'What We Do'} onClick={() => setWindowOpen('what_we_do', true)}/>
+            <Icon src={FolderYellow} text={'Projects'} onClick={() => {skipClear = true; setMenu('Projects')}}/>
+            <Icon src={Phone} text={'Contact Us'} />
+            <Icon src={NyanCat} text={'About'} onClick={() => setWindowOpen('about', true)}/>
+          </div>
+          <div style={{width: '600px' }}>
+            <img src={TTLogo} width='100%'/>
+          </div>
+          <WhatWeDo />
+          <About />
 
-          <TabbedWindow style={{width: '900px'}} title='What We Do' toolbar={null} contextName='what_we_do'>
-            <p>
-              TinkerTech isn't like most design and consulting companies. We do weird shit that no one else does. How weird? Look at this fucking site!
-            </p>
-          </TabbedWindow>
-
-          <DraggableWindow title='About' contextName='about' style={{position: 'relative', top: '5px', right: '10px'}}>
-            <p>
-              TinkerTech Consulting was formed in 2015...
-            </p>
-          </DraggableWindow>
-
-          <AppBar style={{zIndex: 10000000}}>
-            <Toolbar className='SiteNav'>
-            <div className='Toolbar-Buttons'>
-              <Menu title='Projects'>
-                <ListItem><span role='img' aria-label='lightbulb'>💡</span> Idea Bank</ListItem>
-                <ListItem><span role='img' aria-label='Folder'>📁</span> My account</ListItem>
-                <Divider />
-                <ListItem disabled><span role='img' aria-label='Back Icon'>🔙</span> Logout</ListItem>
-              </Menu>
-              <Menu title='Windows'>
-                <ListItem onClick={() => {setWindowOpen('about', true)}}><span role='img' aria-label='Nerd emoji'>🤓</span> About</ListItem>
-                <ListItem onClick={() => {setWindowOpen('what_we_do', true)}}><span role='img' aria-label='floppy disk'>💾</span> What We Do</ListItem>
-                <Divider />
-                <ListItem disabled><span role='img' aria-label='lightbulb'>😴</span> Sleep</ListItem>
-              </Menu>
-            </div>
-            <div>
-              <img className='TTLogo' src={TTLogo} alt='TinkerTech Logo' />
-            </div>
-
-            </Toolbar>
-
-          </AppBar>
 
 
 

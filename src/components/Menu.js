@@ -4,7 +4,7 @@ import { SiteContext } from './SiteContext'
 
 function Menu(props) {
   const { curMenu, setCurMenu } = useContext(SiteContext)
-  const { title, children } = props
+  const { title, children, src } = props
 
   function handleClick() {
     // If this menu is open, close it
@@ -26,7 +26,8 @@ function Menu(props) {
           {children}
         </List>
       )}
-      <Button onClick={handleClick} active={curMenu === title} style={{ fontWeight: 'bold' }}>
+      <Button onClick={handleClick} active={curMenu === title} style={{ height: '35px', fontWeight: 'bold' }}>
+        {src && <img src={src} height='25px' />}
         {title}
       </Button>
     </div>
