@@ -9,6 +9,7 @@ import WhatWeDo from './components/WhatWeDo'
 import TaskBar from './components/TaskBar'
 import About from './components/About'
 import Icon from './components/Icon'
+import Contact from './components/Contact'
 
 import { TTLogo, DoubleArrow, Phone, FolderYellow, FolderBlue, Computer, NyanCat} from './assets'
 
@@ -60,12 +61,13 @@ function App() {
           <div className='IconGrid'>
             <Icon src={Computer} text={'What We Do'} onClick={() => setWindowOpen('what_we_do', true)}/>
             <Icon src={FolderYellow} text={'Projects'} onClick={() => {skipClear = true; setMenu('Projects')}}/>
-            <Icon src={Phone} text={'Contact Us'} />
+            <Icon src={Phone} text={'Contact Us'} onClick={() => setWindowOpen('contact', true)}/>
             <Icon src={NyanCat} text={'About'} onClick={() => setWindowOpen('about', true)}/>
           </div>
           <div style={{width: '600px' }}>
             <img src={TTLogo} width='100%'/>
           </div>
+          <Contact />
           <WhatWeDo />
           <About />
 

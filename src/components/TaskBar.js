@@ -31,7 +31,7 @@ function TaskBar(props) {
         </Menu>
         <div style={{width: '5px'}}/>
         <Menu title='Projects'>
-          <h3 style={{marginTop: '10px', marginBottom: '10px'}}>Active Projects</h3>
+          <h3 style={{marginTop: '10px', marginBottom: '10px'}}>Shareware Projects</h3>
           <ListItem onClick={() => window.open('https://ideabank.tinkertech.dev')}><span role='img' aria-label='lightbulb'>💡</span> Idea Bank</ListItem>
           <Divider />
           <h3 style={{marginTop: '10px', marginBottom: '10px'}}>Coming Soon</h3>

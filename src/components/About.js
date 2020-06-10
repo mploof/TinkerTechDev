@@ -10,6 +10,7 @@ function About() {
   function handleClick() {
     setWindowOpen(contextName, false)
   }
+
   return (
     <DraggableWindow title='About' contextName={contextName}
       style={{width: '350px', height: '450px', left: '50%', marginLeft: '-175px', top: '50%', marginTop: '-200px'}}
