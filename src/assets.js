@@ -10,6 +10,7 @@ import Phone from './assets/phone.png'
 import MovieFile from './assets/movie_file.png'
 import Computer from './assets/computer.png'
 import PCBAssm from './assets/pcb.jpg'
+import PCBAssmHQ from './assets/pcb-hq.jpg'
 import OldComputer from './assets/old_computer.jpg'
 import ETASImg from './assets/etas.jpg'
 
@@ -18,6 +19,7 @@ export {
   FolderYellow, FolderBlue,
   NyanCat, NyanCatLong,
   Phone, MovieFile,
-  PCBAssm, OldComputer,
+  PCBAssm, PCBAssmHQ,
+  OldComputer,
   ETASImg
 }

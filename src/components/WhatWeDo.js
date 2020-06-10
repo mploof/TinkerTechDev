@@ -2,17 +2,20 @@ import React, { useState } from 'react'
 import{ Anchor, Tab, Tabs, TabBody, Fieldset, NumberField, Checkbox, Cutout, Radio } from 'react95'
 import DraggableWindow from './DraggableWindow'
 
-import { MicroscopeNES, MicroscopeVGA, PCBAssm, OldComputer, ETASImg } from '../assets'
+import { MicroscopeNES, MicroscopeVGA, PCBAssm, PCBAssmHQ, OldComputer, ETASImg } from '../assets'
 
 function WhatWeDo(props) {
   const [activeTab, setActiveTab] = useState(0)
   const { tabs, style } = props
   const [checkedValue, setCheckedValue] = useState('hardware')
+  const [pcbimg, setPcbimg] = useState(PCBAssm)
   const listPad = '5px'
 
   function handleChange(e) {
     setCheckedValue(e.target.value)
   }
+
+  const pcbsrc = `url(${pcbimg})`
 
   return (
     <DraggableWindow title='What We Do' toolbar={null} contextName='what_we_do' style={{width: '900px', height: '525px'}}>
@@ -102,8 +105,8 @@ function WhatWeDo(props) {
                     bill of materials, and PCB layout, and assembled prototype.
                   </p>
                 </div>
-                <div style={{height: '200px', width: '200px'}}>
-                <Cutout style={{ width: 'inherit', height: 'inherit', backgroundSize: 'cover', backgroundImage: `url(${PCBAssm})` }}/>
+                <div style={{height: '300px', width: '300px'}}>
+                <Cutout className='ImgCutout' onMouseEnter={()=>setPcbimg(PCBAssmHQ)} onMouseLeave={()=>setPcbimg(PCBAssm)} style={{ width: 'inherit', height: 'inherit', backgroundSize: 'cover', backgroundImage: pcbsrc}}/>
                 </div>
               </div>
               </Fieldset>

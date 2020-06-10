@@ -64,7 +64,8 @@ function App() {
             <Icon src={Phone} text={'Contact Us'} onClick={() => setWindowOpen('contact', true)}/>
             <Icon src={NyanCat} text={'About'} onClick={() => setWindowOpen('about', true)}/>
           </div>
-          <div style={{width: '600px' }}>
+          <div className='DesktopDivider'/>
+          <div className='SplashLogo'>
             <img src={TTLogo} width='100%'/>
           </div>
           <Contact />

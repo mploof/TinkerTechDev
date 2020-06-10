@@ -49,14 +49,10 @@ html, body {
   margin: 15px;
 }
 
-/* Smartphones (landscape) ----------- */
-@media only screen
-and (min-width : 412px) {
-  .SiteNav {
-    display: flex;
-    justify-content: space-between;
-  }
+.ImgCutout {
+  transition-duration: 0.6s;
 }
+
 
 /* Smartphones (portrait) ----------- */
 @media only screen
@@ -76,6 +72,31 @@ and (max-width : 411px) {
   .TTLogo {
     height: 75px;
   }
+
+  .SplashLogo {
+    width: 80%;
+  }
+
+  .DesktopDivider {
+    height: 40px;
+  }
+}
+
+/* Smartphones (landscape) ----------- */
+@media only screen
+and (min-width : 412px) {
+  .SiteNav {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .SplashLogo {
+    width: 70%;
+  }
+
+  .DesktopDivider {
+    height: 30px;
+  }
 }
 
 /* Desktops and laptops ----------- */
@@ -84,5 +105,13 @@ and (min-width : 900px) {
   .SiteNav {
     display: flex;
     justify-content: space-between;
+  }
+
+  .SplashLogo {
+    width: 600px;
+  }
+
+  .DesktopDivider {
+    height: 10px;
   }
 }
