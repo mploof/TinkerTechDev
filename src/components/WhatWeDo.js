@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import{ Anchor, Tab, Tabs, TabBody, Fieldset, NumberField, Checkbox, Cutout, Radio } from 'react95'
 import DraggableWindow from './DraggableWindow'
-
+import RadioTabBody from './RadioTabBody'
 import { MicroscopeNES, MicroscopeVGA, PCBAssm, PCBAssmHQ, OldComputer, ETASImg } from '../assets'
 
 function WhatWeDo(props) {
@@ -16,6 +16,30 @@ function WhatWeDo(props) {
   }
 
   const pcbsrc = `url(${pcbimg})`
+
+  const options = [
+    {
+      label: '📟 Hardware',
+      value: 'hardware',
+      contents: 'We can take your idea from a paper napkin sketch to a full schematic, bill of materials, and PCB layout, and assembled prototype.',
+      img: PCBAssm,
+      imgHQ: PCBAssmHQ
+    },
+    {
+      label: '💻 Firmware',
+      value: 'firmware',
+      contents: 'TinkerTech specializes in developing bare metal C/C++ firmware development for PIC and AVR microcontrollers, but we can work with other hardware if needed. With years of experience developing for realtime and Internet of Things applications, we can make sure your device is fast, responsive, optimized for battery life, and ready for FCC testing.',
+      img: OldComputer,
+      imgHQ: OldComputer
+    },
+    {
+      label: '🤖 Mechanical',
+      value: 'mechanical',
+      contents: 'Need an enclosure for that widget of yours? We can help with that too. We can generate 3D solid models, detailed engineering drawings, and 3D printed rapid prototypes. We have experience in designing for injection molding, as well, so we\'ll be able to help you be ready to bring your product to scale.',
+      img: ETASImg,
+      imgHQ: ETASImg
+    }
+  ]
 
   return (
     <DraggableWindow title='What We Do' toolbar={null} contextName='what_we_do' style={{width: '900px', height: '525px'}}>
@@ -67,88 +91,7 @@ function WhatWeDo(props) {
           }
 
           {activeTab === 1 && (
-          <TabBody style={{display: 'flex'}}>
-          <div>
-            <Fieldset label="Areas" style={{width: '150px'}}>
-              <Radio
-              checked={checkedValue === 'hardware'}
-              onChange={handleChange}
-              value="hardware"
-              label="📟 Hardware"
-              name="areas"
-              />
-              <br />
-              <Radio
-              checked={checkedValue === 'firmware'}
-              onChange={handleChange}
-              value="firmware"
-              label="💻 Firmware"
-              name="areas"
-              />
-              <br />
-              <Radio
-              checked={checkedValue === 'mechanical'}
-              onChange={handleChange}
-              value="mechanical"
-              label="🤖 Mechanical"
-              name="areas"
-              />
-            </Fieldset>
-          </div>
-          <div style={{marginLeft: '30px'}}>
-            {checkedValue === 'hardware' &&
-              <Fieldset label="📟 Hardware">
-              <div style={{display: 'flex', justifyContent: 'space-between'}}>
-                <div style={{paddingRight: '10px'}}>
-                  <p>
-                    We can take your idea from a paper napkin sketch to a full schematic,
-                    bill of materials, and PCB layout, and assembled prototype.
-                  </p>
-                </div>
-                <div style={{height: '300px', width: '300px'}}>
-                <Cutout className='ImgCutout' onMouseEnter={()=>setPcbimg(PCBAssmHQ)} onMouseLeave={()=>setPcbimg(PCBAssm)} style={{ width: 'inherit', height: 'inherit', backgroundSize: 'cover', backgroundImage: pcbsrc}}/>
-                </div>
-              </div>
-              </Fieldset>
-            }
-            {checkedValue === 'firmware' &&
-              <Fieldset label="💻 Embedded Firmware">
-              <div style={{display: 'flex', justifyContent: 'space-between'}}>
-                <div style={{paddingRight: '10px'}}>
-                  <p>
-                    TinkerTech specializes in developing bare metal C/C++ firmware development for PIC and
-                    AVR microcontrollers, though we can work with other hardware if needed. With years
-                    of experience developing for realtime and Internet of Things applications, we
-                    can make sure your device is fast, responsive, optimized for battery life, and ready
-                    for FCC testing.
-                  </p>
-                </div>
-                <div style={{height: '300px', width: '200px'}}>
-                <Cutout style={{ width: 'inherit', height: 'inherit', backgroundSize: 'cover', backgroundImage: `url(${OldComputer})` }}/>
-                </div>
-              </div>
-              </Fieldset>
-            }
-            {checkedValue === 'mechanical' &&
-              <Fieldset label="🤖 Mechanical Design">
-              <div style={{display: 'flex', justifyContent: 'space-between'}}>
-                <div style={{paddingRight: '10px'}}>
-                  <p>
-                    Need an enclosure for that widget of yours? We can help with that too. We can generate 3D solid models, detailed
-                    engineering drawings, and 3D printed rapid prototypes. We have experience in designing for injection molding, as
-                    well, so we'll be able to help you be ready to bring your product to scale.
-                  </p>
-                </div>
-                <div style={{height: '200px', width: '300px'}}>
-                <Cutout style={{ width: 'inherit', height: 'inherit', backgroundSize: 'cover', backgroundImage: `url(${ETASImg})` }}/>
-                </div>
-              </div>
-              </Fieldset>
-            }
-          </div>
-
-
-          </TabBody>
+            <RadioTabBody options={options}/>
           )}
           {activeTab === 2 &&
             <TabBody>
